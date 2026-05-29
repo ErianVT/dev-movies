@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 
+import Button from '../../components/Button'
 import api from '../../services/api'
-import { Background, Container, Info, Poster } from './styles'
+import { Background, Container, ContainerButtons, Info, Poster } from './styles'
 
 function Home() {
   const [movie, setMovie] = useState()
@@ -12,7 +13,7 @@ function Home() {
         data: { results }
       } = await api.get('/movie/popular')
 
-      setMovie(results[1])
+      setMovie(results[17])
     }
 
     getMovies()
@@ -28,7 +29,12 @@ function Home() {
             <Info>
               <h1>{movie?.title}</h1>
               <p>{movie?.overview}</p>
+              <ContainerButtons>
+                <Button red>Assista Agora</Button>
+                <Button>Assista o Trailer</Button>
+              </ContainerButtons>
             </Info>
+
             <Poster>
               <img
                 alt="capa do filme"

@@ -1,9 +1,10 @@
-import Logo from '../../assets/logo.png'
+import logo from '../../assets/logo.png'
 
 function Header() {
   return (
     <div>
-      <img src={Logo} alt="Logo-dev-movies" style={{ width: 400 }} />
+      <h1>Header</h1>
+      <img src={logo} alt="Logo" style={{ width: '500px', height: 'auto' }} />
     </div>
   )
 }
