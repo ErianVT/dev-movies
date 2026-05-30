@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react'
 
 import Button from '../../components/Button'
+import Slider from '../../components/Slider'
 import api from '../../services/api'
 import { Background, Container, ContainerButtons, Info, Poster } from './styles'
 
 function Home() {
   const [movie, setMovie] = useState()
+  const [topMovies, setTopMovies] = useState()
 
   useEffect(() => {
     async function getMovies() {
@@ -13,12 +15,18 @@ function Home() {
         data: { results }
       } = await api.get('/movie/popular')
 
-      setMovie(results[17])
+      setMovie(results[0])
     }
-
+    async function getTopMovies() {
+      const {
+        data: { results }
+      } = await api.get('/movie/top_rated')
+      console.log(results)
+      setTopMovies(results)
+    }
     getMovies()
+    getTopMovies()
   }, [])
-
   return (
     <>
       {movie && (
@@ -44,6 +52,7 @@ function Home() {
           </Container>
         </Background>
       )}
+      {topMovies && <Slider info={topMovies} title={'Top Filmes'} />}
     </>
   )
 }
