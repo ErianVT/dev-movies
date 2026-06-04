@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 
 import Button from '../../components/Button'
+import Modal from '../../components/Modal'
 import Slider from '../../components/Slider'
 import api from '../../services/api'
 import { getImages } from '../../utils/getImages'
@@ -26,7 +27,7 @@ function Home() {
       const {
         data: { results }
       } = await api.get('/movie/top_rated')
-      console.log('filmes em destaque' + results)
+
       setTopMovies(results)
     }
 
@@ -34,7 +35,7 @@ function Home() {
       const {
         data: { results }
       } = await api.get('/tv/top_rated')
-      console.log('séries em destaque' + results)
+
       setTopSeries(results)
     }
 
@@ -42,7 +43,7 @@ function Home() {
       const {
         data: { results }
       } = await api.get('/tv/popular')
-      console.log('séries populares' + results)
+
       setPopularSeries(results)
     }
 
@@ -50,7 +51,7 @@ function Home() {
       const {
         data: { results }
       } = await api.get('/person/popular')
-      console.log('top artistas' + results)
+
       setTopPeople(results)
     }
 
@@ -64,6 +65,7 @@ function Home() {
     <>
       {movie && (
         <Background img={getImages(movie.backdrop_path)}>
+          <Modal movieId={movie.id} />
           <Container>
             <Info>
               <h1>{movie?.title}</h1>

@@ -1,10 +1,11 @@
+import 'swiper/css'
+
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import Card from '../Card'
 import { Container } from './styles'
 
 function Slider({ info, title }) {
-  console.log(info, title)
   return (
     <Container>
       <h2>{title}</h2>

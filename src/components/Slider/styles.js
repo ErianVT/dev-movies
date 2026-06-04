@@ -10,6 +10,10 @@ export const Container = styled.div`
     margin: 50px 0 20px 20px;
   }
 
+  .swiper-slide {
+    width: 300px !important;
+  }
+
   .swiper-wrapper {
     display: flex;
   }
