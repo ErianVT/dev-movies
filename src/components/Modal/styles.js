@@ -24,4 +24,12 @@ export const Container = styled.div`
   iframe {
     border: none;
   }
+
+  button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border-radius: 5px;
+    padding: 2px;
+  }
 `
