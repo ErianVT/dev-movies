@@ -70,14 +70,6 @@ export async function getMovieById(movieId) {
   return data
 }
 
-// export async function getMovieGenre() {
-//   const {
-//     data: { genres }
-//   } = await api.get('/genre/movie/list')
-//   console.log(genres)
-//   return genres
-// }
-
 export async function getDiscoverMovie() {
   const {
     data: { results }
@@ -114,6 +106,36 @@ export async function getTerrorMovie() {
   const {
     data: { results }
   } = await api.get('/discover/movie?with_genres=27')
+
+  return results
+}
+
+export async function getDiscoverTv() {
+  const {
+    data: { results }
+  } = await api.get('/discover/tv')
+  console.log(results)
+  return results
+}
+
+export async function getActionSeries() {
+  const {
+    data: { results }
+  } = await api.get('/discover/tv?with_genres=10759')
+
+  return results
+}
+export async function getComedySeries() {
+  const {
+    data: { results }
+  } = await api.get('/discover/tv?with_genres=35')
+
+  return results
+}
+export async function getMysterySeries() {
+  const {
+    data: { results }
+  } = await api.get('/discover/tv?with_genres=9648')
 
   return results
 }

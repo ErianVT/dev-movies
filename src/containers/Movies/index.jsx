@@ -44,7 +44,6 @@ function Movies() {
 
             setFeaturedMovie(discoverMovie[randomIndex])
 
-            console.log({ discoverMovie, topMovies, actionMovie })
             setDiscoverMovie(discoverMovie)
             setTopMovies(topMovies)
             setActionMovie(actionMovie)
