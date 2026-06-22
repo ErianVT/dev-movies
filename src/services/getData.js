@@ -69,3 +69,51 @@ export async function getMovieById(movieId) {
 
   return data
 }
+
+// export async function getMovieGenre() {
+//   const {
+//     data: { genres }
+//   } = await api.get('/genre/movie/list')
+//   console.log(genres)
+//   return genres
+// }
+
+export async function getDiscoverMovie() {
+  const {
+    data: { results }
+  } = await api.get('/discover/movie')
+
+  return results
+}
+
+export async function getActionMovie() {
+  const {
+    data: { results }
+  } = await api.get('/discover/movie?with_genres=28')
+
+  return results
+}
+
+export async function getComedyMovie() {
+  const {
+    data: { results }
+  } = await api.get('/discover/movie?with_genres=35')
+
+  return results
+}
+
+export async function getScienceFictionMovie() {
+  const {
+    data: { results }
+  } = await api.get('/discover/movie?with_genres=878')
+
+  return results
+}
+
+export async function getTerrorMovie() {
+  const {
+    data: { results }
+  } = await api.get('/discover/movie?with_genres=27')
+
+  return results
+}
