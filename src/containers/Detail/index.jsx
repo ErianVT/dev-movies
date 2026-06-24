@@ -37,7 +37,8 @@ function Detail() {
         .catch((err) => console.error(err))
     }
     getAllData()
-  }, [])
+    window.scrollTo(0, 0)
+  }, [id])
 
   return (
     <>
