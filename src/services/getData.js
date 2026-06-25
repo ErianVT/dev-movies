@@ -114,7 +114,7 @@ export async function getDiscoverTv() {
   const {
     data: { results }
   } = await api.get('/discover/tv')
-  console.log(results)
+
   return results
 }
 

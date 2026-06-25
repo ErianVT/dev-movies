@@ -43,13 +43,6 @@ function Series() {
 
             setFeaturedTv(discoverTv[randomIndex])
 
-            console.log({
-              topSeries,
-              popularSeries,
-              actionSeries,
-              comedySeries
-            })
-
             setTopSeries(topSeries)
             setPopularSeries(popularSeries)
             setActionSeries(actionSeries)

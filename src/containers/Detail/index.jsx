@@ -39,7 +39,6 @@ function Detail() {
     getAllData()
     window.scrollTo(0, 0)
   }, [id])
-
   return (
     <>
       {movie && (
@@ -72,6 +71,7 @@ function Detail() {
                 </div>
               ))}
           </ContainerMovies>
+          c
           {movieSimilar && (
             <Slider info={movieSimilar} title={'Filmes Similares'} />
           )}
