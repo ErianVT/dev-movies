@@ -46,7 +46,6 @@ function Detail() {
             ]
       )
         .then(([movie, videos, credits, similar]) => {
-          console.log(similar, videos)
           setMovie(movie)
           setMovieVideos(videos)
           setMovieCredits(credits)
