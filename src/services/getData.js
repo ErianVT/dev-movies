@@ -5,7 +5,7 @@ export async function getMovies() {
     data: { results }
   } = await api.get('/movie/popular')
 
-  return results[0]
+  return results[3]
 }
 
 export async function getTopMovies() {
@@ -106,6 +106,36 @@ export async function getTerrorMovie() {
   const {
     data: { results }
   } = await api.get('/discover/movie?with_genres=27')
+
+  return results
+}
+
+export async function getSeriesById(seriesId) {
+  const { data } = await api.get(`tv/${seriesId}`)
+
+  return data
+}
+
+export async function getSeriesCredits(seriesId) {
+  const {
+    data: { cast }
+  } = await api.get(`tv/${seriesId}/credits`)
+
+  return cast
+}
+
+export async function getSeriesSimilar(seriesId) {
+  const {
+    data: { results }
+  } = await api.get(`tv/${seriesId}/similar`)
+
+  return results
+}
+
+export async function getSeriesVideos(seriesId) {
+  const {
+    data: { results }
+  } = await api.get(`tv/${seriesId}/videos`)
 
   return results
 }

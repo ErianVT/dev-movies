@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 
 import Credits from '../../components/Credits'
 import Slider from '../../components/Slider'
@@ -8,13 +8,21 @@ import {
   getMovieById,
   getMovieCredits,
   getMovieSimilar,
-  getMovieVideos
+  getMovieVideos,
+  getSeriesById,
+  getSeriesCredits,
+  getSeriesSimilar,
+  getSeriesVideos
 } from '../../services/getData'
 import { getImages } from '../../utils/getImages'
 import { Background, Container, ContainerMovies, Cover, Info } from './styles'
 
 function Detail() {
   const { id } = useParams()
+
+  const location = useLocation()
+  const isSeries = location.pathname.includes('/serie/')
+
   const [movie, setMovie] = useState()
   const [movieVideos, setMovieVideos] = useState()
   const [movieCredits, setMovieCredits] = useState()
@@ -22,13 +30,23 @@ function Detail() {
 
   useEffect(() => {
     async function getAllData() {
-      Promise.all([
-        getMovieById(id),
-        getMovieVideos(id),
-        getMovieCredits(id),
-        getMovieSimilar(id)
-      ])
+      Promise.all(
+        isSeries
+          ? [
+              getSeriesById(id),
+              getSeriesVideos(id),
+              getSeriesCredits(id),
+              getSeriesSimilar(id)
+            ]
+          : [
+              getMovieById(id),
+              getMovieVideos(id),
+              getMovieCredits(id),
+              getMovieSimilar(id)
+            ]
+      )
         .then(([movie, videos, credits, similar]) => {
+          console.log(similar, videos)
           setMovie(movie)
           setMovieVideos(videos)
           setMovieCredits(credits)
@@ -38,7 +56,8 @@ function Detail() {
     }
     getAllData()
     window.scrollTo(0, 0)
-  }, [id])
+  }, [id, isSeries])
+
   return (
     <>
       {movie && (
@@ -49,7 +68,7 @@ function Detail() {
               <img src={getImages(movie.poster_path)} />
             </Cover>
             <Info>
-              <h2>{movie.title}</h2>
+              <h2>{movie.title || movie.name}</h2>
               <SpanGenres genres={movie.genres} />
               <p>{movie.overview}</p>
               <div>
@@ -58,7 +77,8 @@ function Detail() {
             </Info>
           </Container>
           <ContainerMovies>
-            {movieVideos &&
+            {Array.isArray(movieVideos) &&
+              movieVideos.length > 0 &&
               movieVideos.map((video) => (
                 <div key={video.id}>
                   <h4>{video.name}</h4>
@@ -71,9 +91,12 @@ function Detail() {
                 </div>
               ))}
           </ContainerMovies>
-          c
-          {movieSimilar && (
-            <Slider info={movieSimilar} title={'Filmes Similares'} />
+
+          {Array.isArray(movieSimilar) && movieSimilar.length > 0 && (
+            <Slider
+              info={movieSimilar}
+              title={isSeries ? 'Séries Similares' : 'Filmes Similares'}
+            />
           )}
         </>
       )}

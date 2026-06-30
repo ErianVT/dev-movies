@@ -11,7 +11,7 @@ function Modal({ movieId, setShowModal }) {
       setMovie(await getMovieVideos(movieId))
     }
     getMovies()
-  }, [])
+  }, [movieId])
 
   return (
     <Background onClick={() => setShowModal(false)}>

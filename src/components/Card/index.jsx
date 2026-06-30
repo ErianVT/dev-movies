@@ -6,15 +6,22 @@ import { Container } from './styles'
 function Card({ item }) {
   const navigate = useNavigate()
 
-  // consegui fazer da home navegar para os detalhes do filme; mas na seção de filmes similares
-  //ele só envia o id; mas não navega; acho que preciso usar o UseNavigate.
+  const isSeries = Boolean(item.first_air_date)
+
+  function handleClick() {
+    if (isSeries) {
+      navigate(`/detalhe/serie/${item.id}`)
+    } else {
+      navigate(`/detalhe/filme/${item.id}`)
+    }
+  }
 
   return (
     <Container>
       <img
         src={getImages(item.poster_path || item.profile_path || '')}
         alt={item.title || item.name}
-        onClick={() => navigate(`/detalhe/${item.id}`)}
+        onClick={handleClick}
       />
       <h3>{item.title || item.name}</h3>
     </Container>

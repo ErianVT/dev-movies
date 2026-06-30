@@ -2,6 +2,8 @@ import { getImages } from '../../utils/getImages'
 import { Title, Container } from './styles'
 
 function Credits({ credits }) {
+  if (!credits || !Array.isArray(credits)) return null
+
   const imgArtist = credits.filter((imagem) => imagem.profile_path)
 
   return (
